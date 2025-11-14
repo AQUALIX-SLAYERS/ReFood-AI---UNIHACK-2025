@@ -8,125 +8,114 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // Define a nice green color
+  final Color primaryGreen = Colors.green.shade600;
+
   @override
   Widget build(BuildContext context) {
+    // Scaffold now just has a plain background color
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF6A11CB), Color(0xFF2575FC)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // --- YOUR LOGO GOES HERE ---
-                  const SizedBox(height: 80),
-                  Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1), // Placeholder background
-                      borderRadius: BorderRadius.circular(20),
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // --- YOUR LOGO ---
+                const SizedBox(height: 80),
+                Image.asset(
+                  'assets/images/logo.png',
+                  width: 150,
+                  height: 150,
+                ),
+                const SizedBox(height: 50),
+
+                // --- Email Text Field ---
+                TextField(
+                  // Text color is now black
+                  style: const TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.email, color: Colors.grey[600]),
+                    labelText: 'Email',
+                    labelStyle: TextStyle(color: Colors.grey[700]),
+                    // Use a light grey fill
+                    filled: true,
+                    fillColor: Colors.grey[100],
+                    // Standard border
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey[300]!),
                     ),
-                    // LATER: You will replace this Center widget with:
-                    // Image.asset('assets/your_logo.png')
-                    //TODO: Replace with your logo
-                    child: const Center(
-                      child: Text(
-                        'Your Logo',
-                        style: TextStyle(color: Colors.white54, fontSize: 18),
-                      ),
+                    // Green border when focused
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: primaryGreen, width: 2),
                     ),
                   ),
-                  const SizedBox(height: 50),
+                  keyboardType: TextInputType.emailAddress,
+                ),
 
-                  // --- Email Text Field ---
-                  TextField(
-                    style: const TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.email, color: Colors.white70),
-                      labelText: 'Email',
-                      labelStyle: const TextStyle(color: Colors.white70),
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.1),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Colors.transparent),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Colors.white),
-                      ),
+                // --- Spacer ---
+                const SizedBox(height: 20),
+
+                // --- Password Text Field ---
+                TextField(
+                  obscureText: true,
+                  style: const TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.lock, color: Colors.grey[600]),
+                    labelText: 'Password',
+                    labelStyle: TextStyle(color: Colors.grey[700]),
+                    filled: true,
+                    fillColor: Colors.grey[100],
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey[300]!),
                     ),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-
-                  // --- Spacer ---
-                  const SizedBox(height: 20),
-
-                  // --- Password Text Field ---
-                  TextField(
-                    obscureText: true,
-                    style: const TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock, color: Colors.white70),
-                      labelText: 'Password',
-                      labelStyle: const TextStyle(color: Colors.white70),
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.1),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Colors.transparent),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Colors.white),
-                      ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: primaryGreen, width: 2),
                     ),
                   ),
+                ),
 
-                  // --- Forgot Password ---
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Forgot Password?',
-                        style: TextStyle(color: Colors.white70),
-                      ),
+                // --- Forgot Password ---
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Forgot Password?',
+                      // Text is now green
+                      style: TextStyle(color: primaryGreen),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                ),
+                const SizedBox(height: 20),
 
-                  // --- Login Button ---
-                  ElevatedButton(
-                    onPressed: () {
-                      // Login logic
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white, // Button background
-                      foregroundColor: Colors.blue, // Button text color
-                      minimumSize: const Size.fromHeight(50),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                // --- Login Button ---
+                ElevatedButton(
+                  onPressed: () {
+                    // Login logic
+                  },
+                  style: ElevatedButton.styleFrom(
+                    // Button background is green
+                    backgroundColor: primaryGreen,
+                    // Button text color is white
+                    foregroundColor: Colors.white,
+                    minimumSize: const Size.fromHeight(50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                ],
-              ),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
